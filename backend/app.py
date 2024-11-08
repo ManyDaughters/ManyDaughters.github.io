@@ -9,9 +9,9 @@ load_dotenv()
 app = Flask(__name__)
 
 GITHUB_TOKEN  os=.getenv('GITHUB_TOKEN')
-REPO_OWNER = 'your-github-username'
-REPO_NAME = 'your-repo-name'
-FILE_PATH = 'path/to/save/file'
+REPO_OWNER = 'ManyDaughters'
+REPO_NAME = 'ManyDaughters.github.io'
+FILE_PATH = 'files'
 
 @app.route('/upload', methods=['POST'])
 def upload_file():

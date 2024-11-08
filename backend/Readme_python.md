@@ -8,3 +8,5 @@
 
     ## Install requirements
     pip install -r requirements.txt
+
+    "C:\Users\dalbrecht\GitHub\Key"
