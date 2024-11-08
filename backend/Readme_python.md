@@ -11,3 +11,6 @@
 
     ## Start tje Flask Application
     python app.py
+
+    ## Deactivate python virtual environment
+    deactivate

@@ -11,7 +11,7 @@ app = Flask(__name__)
 GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
 REPO_OWNER = 'ManyDaughters'
 REPO_NAME = 'ManyDaughters.github.io'
-FILE_PATH = 'files/'
+FILE_PATH = 'tree/main/files/'
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
