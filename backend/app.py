@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify
 import requests
 from base64 import b64encode
 from dotenv import load_dotenv
+from urllib.parse import quote
 
 load_dotenv()
 
@@ -11,7 +12,7 @@ app = Flask(__name__)
 GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
 REPO_OWNER = 'ManyDaughters'
 REPO_NAME = 'ManyDaughters.github.io'
-FILE_PATH = 'tree/main/files/'
+FILE_PATH = 'main/tree/files/'  # Ensure this path is correct and does not contain invalid characters
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -25,7 +26,10 @@ def upload_file():
     content = file.read()
     encoded_content = b64encode(content).decode('utf-8')
 
-    url = f'https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{FILE_PATH}/{file.filename}'
+    # URL encode the file path and file name
+    file_path = quote(f'{FILE_PATH}/{file.filename}')
+
+    url = f'https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{file_path}'
     headers = {
         'Authorization': f'token {GITHUB_TOKEN}',
         'Accept': 'application/vnd.github.v3+json'
