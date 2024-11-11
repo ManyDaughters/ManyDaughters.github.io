@@ -8,12 +8,28 @@
   You have received your Research Team ID and password from the #ManyDaughters team.
 </p>
 
-<form>
+<form onsubmit="return validateForm()">
   <label for="team-id">Research Team ID:</label><br>
   <input type="text" id="team-id" name="team-id"><br>
   <label for="password">Password:</label><br>
   <input type="password" id="password" name="password"><br>
+  <input type="submit" value="Submit">
 </form>
+
+<script>
+function validateForm() {
+  const teamId = document.getElementById('team-id').value;
+  const password = document.getElementById('password').value;
+  
+  if (teamId === 'admin' && password === 'password') {
+    window.location.href = 'upload.html';
+    return false;
+  } else {
+    alert('Invalid Team ID or Password');
+    return false;
+  }
+}
+</script>
 
 </body>
 </html>
