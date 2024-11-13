@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+<h1>#ManyDaughters</h1>
+<p>Soon you will be able to upload and check your analysis code here.</p>
+
+<p>Please provide your team's credentials below, to proceed to the upload point.
+  You have received your Research Team ID and password from the #ManyDaughters team.
+</p>
+
+<form onsubmit="return validateForm(event)">
+  <label for="team-id">Research Team ID:</label><br>
+  <input type="text" id="team-id" name="team-id"><br>
+  <label for="password">Password:</label><br>
+  <input type="password" id="password" name="password"><br>
+  <input type="submit" value="Login">
+</form>
+
+<!-- ...existing code... -->
+<a href="files/20241113_163752_admin_02_h1_analysis.do">Download Analysis</a>
+<!-- ...existing code... -->
+
+<script>
+function validateForm(event) {
+  event.preventDefault(); // Prevent form submission
+  const teamId = document.getElementById('team-id').value;
+  const password = document.getElementById('password').value;
+  
+  if (teamId === 'admin' && password === 'password') {
+    window.location.href = `upload.html?team-id=${teamId}`;
+  } else {
+    alert('Invalid Team ID or Password');
+  }
+}
+</script>
+
+</body>
+</html>

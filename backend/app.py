@@ -36,7 +36,7 @@ def upload_file():
     encoded_content = b64encode(content).decode('utf-8')
 
     # Generate the timestamp
-    timestamp = datetime.now().strftime('%Y%m%d_%H:%M:%S')
+    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
 
     # Create the new filename with timestamp and team ID
     new_filename = f'{timestamp}_{team_id}_{file.filename}'
