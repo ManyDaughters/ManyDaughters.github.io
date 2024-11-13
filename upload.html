@@ -5,6 +5,11 @@
   if (document.referrer.indexOf('index.html') === -1) {
     window.location.href = 'index.html';
   }
+
+  // Retrieve the team ID from the URL parameters and set it in the hidden input field
+  const urlParams = new URLSearchParams(window.location.search);
+  const teamId = urlParams.get('team-id');
+  document.getElementById('team-id').value = teamId;
 </script>
 <h1>#ManyDaughters</h1>
 <p>Please select and upload your analysis code here.</p>
@@ -13,6 +18,7 @@
 <form action="http://localhost:5000/upload" method="post" enctype="multipart/form-data">
   <label for="file">Choose a file to upload:</label>
   <input type="file" id="file" name="file">
+  <input type="hidden" id="team-id" name="team-id">
   <input type="submit" value="Upload">
 </form>
 

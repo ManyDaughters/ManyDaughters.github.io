@@ -22,7 +22,7 @@ function validateForm() {
   const password = document.getElementById('password').value;
   
   if (teamId === 'admin' && password === 'password') {
-    window.location.href = 'upload.html';
+    window.location.href = `upload.html?team-id=${teamId}`;
     return false;
   } else {
     alert('Invalid Team ID or Password');

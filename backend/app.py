@@ -27,14 +27,18 @@ def upload_file():
     if file.filename == '':
         return jsonify({'error': 'No selected file'}), 400
 
+    team_id = request.form.get('team-id')
+    if not team_id:
+        return jsonify({'error': 'No team ID provided'}), 400
+
     content = file.read()
     encoded_content = b64encode(content).decode('utf-8')
 
     # Generate the timestamp
     timestamp = datetime.now().strftime('%Y%m%d_%H:%M:%S')
 
-    # Create the new filename with timestamp
-    new_filename = f'{timestamp}_{file.filename}'
+    # Create the new filename with timestamp and team ID
+    new_filename = f'{timestamp}_{team_id}_{file.filename}'
 
     # URL encode the file path and file name
     file_path = quote(f'{FILE_PATH}/{new_filename}')
