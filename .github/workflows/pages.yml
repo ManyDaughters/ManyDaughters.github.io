@@ -23,7 +23,9 @@ jobs:
         ruby-version: '3.0'  # Specify a valid Ruby version
 
     - name: Install dependencies
-      run: bundle install
+      run: |
+        gem install bundler
+        bundle install
 
     - name: Build site
       run: bundle exec jekyll build
