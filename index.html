@@ -23,7 +23,8 @@ function validateForm(event) {
   const password = document.getElementById('password').value;
   
   if (teamId === 'admin' && password === 'password') {
-    window.location.href = `upload.html?team-id=${teamId}`;
+    const timestamp = new Date().getTime(); // Generate a timestamp
+    window.location.href = `upload.html?team-id=${teamId}&_=${timestamp}`; // Add timestamp to URL
   } else {
     alert('Invalid Team ID or Password');
   }
