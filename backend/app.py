@@ -4,6 +4,7 @@ import requests
 from base64 import b64encode
 from dotenv import load_dotenv
 from urllib.parse import quote
+from datetime import datetime  # Add import for datetime
 
 load_dotenv()
 
@@ -29,18 +30,35 @@ def upload_file():
     content = file.read()
     encoded_content = b64encode(content).decode('utf-8')
 
+    # Generate the timestamp
+    timestamp = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
+
+    # Create the new filename with timestamp
+    new_filename = f'{timestamp}_{file.filename}'
+
     # URL encode the file path and file name
-    file_path = quote(f'{FILE_PATH}/{file.filename}')
+    file_path = quote(f'{FILE_PATH}/{new_filename}')
 
     url = f'https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{file_path}'
     headers = {
         'Authorization': f'token {GITHUB_TOKEN}',
         'Accept': 'application/vnd.github.v3+json'
     }
-    data = {
-        'message': 'Add uploaded file',
-        'content': encoded_content
-    }
+
+    # Check if the file already exists
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        sha = response.json()['sha']
+        data = {
+            'message': 'Update uploaded file',
+            'content': encoded_content,
+            'sha': sha
+        }
+    else:
+        data = {
+            'message': 'Add uploaded file',
+            'content': encoded_content
+        }
 
     # Debug: Log the request details
     print(f'URL: {url}')
