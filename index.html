@@ -22,9 +22,14 @@ function validateForm(event) {
   const teamId = document.getElementById('team-id').value;
   const password = document.getElementById('password').value;
   
+  console.log('Team ID:', teamId); // Log the team ID for debugging
+  console.log('Password:', password); // Log the password for debugging
+  
   if (teamId === 'admin' && password === 'password') {
     const timestamp = new Date().getTime(); // Generate a timestamp
-    window.location.href = `upload.html?team-id=${teamId}&_=${timestamp}`; // Add timestamp to URL
+    const redirectUrl = `upload.html?team-id=${teamId}&_=${timestamp}`;
+    console.log('Redirecting to:', redirectUrl); // Log the redirect URL for debugging
+    window.location.href = redirectUrl; // Add timestamp to URL
   } else {
     alert('Invalid Team ID or Password');
   }
