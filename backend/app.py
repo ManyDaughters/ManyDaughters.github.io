@@ -39,7 +39,17 @@ def upload_file():
         'content': encoded_content
     }
 
+    # Debug: Log the request details
+    print(f'URL: {url}')
+    print(f'Headers: {headers}')
+    print(f'Data: {data}')
+
     response = requests.put(url, headers=headers, json=data)
+    
+    # Debug: Log the response details
+    print(f'Response Status Code: {response.status_code}')
+    print(f'Response Content: {response.content}')
+
     if response.status_code == 201:
         return jsonify({'message': 'File uploaded successfully'}), 201
     else:
