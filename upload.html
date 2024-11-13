@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <html>
 <body>
-<script>
-  if (document.referrer.indexOf('index.html') === -1) {
-    window.location.href = 'index.html';
-  }
-
-  // Retrieve the team ID from the URL parameters and set it in the hidden input field
-  const urlParams = new URLSearchParams(window.location.search);
-  const teamId = urlParams.get('team-id');
-  document.getElementById('team-id').value = teamId;
-</script>
 <h1>#ManyDaughters</h1>
 <p>Please select and upload your analysis code here.</p>
 
@@ -22,5 +12,15 @@
   <input type="submit" value="Upload">
 </form>
 
+<script>
+  if (document.referrer.indexOf('index.html') === -1) {
+    window.location.href = 'index.html';
+  }
+
+  // Retrieve the team ID from the URL parameters and set it in the hidden input field
+  const urlParams = new URLSearchParams(window.location.search);
+  const teamId = urlParams.get('team-id');
+  document.getElementById('team-id').value = teamId;
+</script>
 </body>
 </html>
