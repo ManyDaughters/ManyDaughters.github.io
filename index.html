@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>#ManyDaughters</h1>
+<p>Soon you will be able to upload and check your analysis code here.</p>
+
+<p>Please provide your team's credentials below, to proceed to the upload point.
+  You have received your Research Team ID and password from the #ManyDaughters team.
+</p>
+
+<form onsubmit="return validateForm(event)">
+  <label for="team-id">Research Team ID:</label><br>
+  <input type="text" id="team-id" name="team-id"><br>
+  <label for="password">Password:</label><br>
+  <input type="password" id="password" name="password"><br>
+  <input type="submit" value="Login">
+</form>
+
+<script>
+  // Redirect to index.html if accessed via the root URL
+  if (window.location.pathname === '/') {
+    window.location.href = 'index.html';
+  }
+
+  function validateForm(event) {
+    event.preventDefault(); // Prevent form submission
+    const teamId = document.getElementById('team-id').value;
+    const password = document.getElementById('password').value;
+    
+    console.log('Team ID:', teamId); // Log the team ID for debugging
+    console.log('Password:', password); // Log the password for debugging
+    
+    if (teamId === 'admin' && password === 'password') {
+      const timestamp = new Date().getTime(); // Generate a timestamp
+      const redirectUrl = `upload.html?team-id=${teamId}&_=${timestamp}`;
+      console.log('Redirecting to:', redirectUrl); // Log the redirect URL for debugging
+      window.location.href = redirectUrl; // Add timestamp to URL
+    } else {
+      alert('Invalid Team ID or Password');
+    }
+  }
+</script>
+
+</body>
+</html>

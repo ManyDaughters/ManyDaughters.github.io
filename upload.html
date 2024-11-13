@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>#ManyDaughters</h1>
+<p>Please select and upload your analysis code here.</p>
+
+<!-- File upload form -->
+<form action="http://localhost:5000/upload" method="post" enctype="multipart/form-data">
+  <label for="file">Choose a file to upload:</label>
+  <input type="file" id="file" name="file">
+  <input type="hidden" id="team-id" name="team-id">
+  <input type="submit" value="Upload">
+</form>
+
+<script>
+  if (document.referrer.indexOf('index.html') === -1) {
+    window.location.href = 'index.html';
+  }
+
+  // Retrieve the team ID from the URL parameters and set it in the hidden input field
+  const urlParams = new URLSearchParams(window.location.search);
+  const teamId = urlParams.get('team-id');
+  console.log('Team ID from URL:', teamId); // Log the team ID for debugging
+  document.getElementById('team-id').value = teamId;
+  console.log('Hidden input value:', document.getElementById('team-id').value); // Log the hidden input value for debugging
+</script>
+</body>
+</html>
