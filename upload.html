@@ -20,7 +20,9 @@
   // Retrieve the team ID from the URL parameters and set it in the hidden input field
   const urlParams = new URLSearchParams(window.location.search);
   const teamId = urlParams.get('team-id');
+  console.log('Team ID from URL:', teamId); // Log the team ID for debugging
   document.getElementById('team-id').value = teamId;
+  console.log('Hidden input value:', document.getElementById('team-id').value); // Log the hidden input value for debugging
 </script>
 </body>
 </html>

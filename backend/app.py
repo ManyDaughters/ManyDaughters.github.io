@@ -28,6 +28,7 @@ def upload_file():
         return jsonify({'error': 'No selected file'}), 400
 
     team_id = request.form.get('team-id')
+    print('Received team ID:', team_id)  # Log the received team ID for debugging
     if not team_id:
         return jsonify({'error': 'No team ID provided'}), 400
 
