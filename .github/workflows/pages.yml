@@ -37,3 +37,7 @@ jobs:
         publish_dir: ./_site
         # Ensure the correct branch is specified for deployment
         publish_branch: gh-pages
+
+    - name: Debug GitHub Token
+      run: echo ${{ secrets.GITHUB_TOKEN }}
+      shell: bash
