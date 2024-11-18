@@ -20,6 +20,15 @@
     .section {
       margin-bottom: 20px; /* Add space between sections */
     }
+    .form-container {
+      padding: 20px; /* Increase padding around the form */
+      border: 1px solid #ddd; /* Optional: Add a border for better visibility */
+      border-radius: 8px; /* Optional: Add rounded corners */
+      background-color: #f9f9f9; /* Optional: Add a background color */
+    }
+    .form-group {
+      margin-bottom: 30px; /* Increase space between form groups */
+    }
   </style>
 </head>
 <body class="container">
@@ -32,64 +41,71 @@
   </div>
   
   <!-- Section for file upload form -->
-  <div class="section">
-    <form id="upload-form" action="http://localhost:5000/upload" method="post" enctype="multipart/form-data" class="form-group">
-      <div class="form-group">
-        <label for="file1" class="custom-file-label">Select H1 do-file</label>
-        <input type="file" id="file1" name="file1" class="custom-file-input">
-      </div>
-      <div class="form-group">
-        <label for="file2" class="custom-file-label">Select H2 do-file</label>
-        <input type="file" id="file2" name="file2" class="custom-file-input">
-      </div>
-      <div class="form-group">
-        <label for="file3" class="custom-file-label">Select H3 do-file</label>
-        <input type="file" id="file3" name="file3" class="custom-file-input">
-      </div>
-      <div class="form-group">
-        <label for="file4" class="custom-file-label">Select H4 do-file</label>
-        <input type="file" id="file4" name="file4" class="custom-file-input">
-      </div>
-      <input type="hidden" id="team-id" name="team-id"><br>
-      <input type="submit" value="Upload" class="btn btn-primary">
-    </form>
+  <div class="section row justify-content-center">
+    <div class="col-md-8 col-lg-6 form-container">
+      <form id="upload-form" action="http://localhost:5000/upload" method="post" enctype="multipart/form-data" class="form-group">
+        <div class="row">
+          <div class="col-12 form-group">
+            <label for="file1" class="custom-file-label">Select H1 do-file</label>
+            <input type="file" id="file1" name="file1" class="custom-file-input">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 form-group">
+            <label for="file2" class="custom-file-label">Select H2 do-file</label>
+            <input type="file" id="file2" name="file2" class="custom-file-input">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 form-group">
+            <label for="file3" class="custom-file-label">Select H3 do-file</label>
+            <input type="file" id="file3" name="file3" class="custom-file-input">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 form-group">
+            <label for="file4" class="custom-file-label">Select H4 do-file</label>
+            <input type="file" id="file4" name="file4" class="custom-file-input">
+          </div>
+        </div>
+        <input type="hidden" id="team-id" name="team-id"><br>
+        <input type="submit" value="Upload" class="btn btn-primary">
+      </form>
+    </div>
   </div>
 
-</body>
-</html>
+  <script>
+    if (document.referrer.indexOf('index.html') === -1) {
+      window.location.href = 'index.html';
+    }
 
-<script>
-  if (document.referrer.indexOf('index.html') === -1) {
-    window.location.href = 'index.html';
-  }
+    // Retrieve the team ID from the URL parameters and set it in the hidden input field
+    const urlParams = new URLSearchParams(window.location.search);
+    const teamId = urlParams.get('team-id');
+    console.log('Team ID from URL:', teamId); // Log the team ID for debugging
+    document.getElementById('team-id').value = teamId;
+    console.log('Hidden input value:', document.getElementById('team-id').value); // Log the hidden input value for debugging
 
-  // Retrieve the team ID from the URL parameters and set it in the hidden input field
-  const urlParams = new URLSearchParams(window.location.search);
-  const teamId = urlParams.get('team-id');
-  console.log('Team ID from URL:', teamId); // Log the team ID for debugging
-  document.getElementById('team-id').value = teamId;
-  console.log('Hidden input value:', document.getElementById('team-id').value); // Log the hidden input value for debugging
-
-  // Handle form submission
-  document.getElementById('upload-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const formData = new FormData(this);
-    fetch(this.action, {
-      method: this.method,
-      body: formData
-    }).then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.error('Error:', error));
-  });
-
-  // Update label text when a file is selected
-  document.querySelectorAll('.custom-file-input').forEach(input => {
-    input.addEventListener('change', function() {
-      const label = this.nextElementSibling;
-      const fileName = this.files[0] ? this.files[0].name : 'Select file';
-      label.textContent = fileName;
+    // Handle form submission
+    document.getElementById('upload-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const formData = new FormData(this);
+      fetch(this.action, {
+        method: this.method,
+        body: formData
+      }).then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
     });
-  });
-</script>
+
+    // Update label text when a file is selected
+    document.querySelectorAll('.custom-file-input').forEach(input => {
+      input.addEventListener('change', function() {
+        const label = this.nextElementSibling;
+        const fileName = this.files[0] ? this.files[0].name : 'Select file';
+        label.textContent = fileName;
+      });
+    });
+  </script>
 </body>
 </html>
