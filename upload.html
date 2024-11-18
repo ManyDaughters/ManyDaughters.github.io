@@ -5,9 +5,15 @@
 <p>Please select and upload your analysis code here.</p>
 
 <!-- File upload form -->
-<form action="http://localhost:5000/upload" method="post" enctype="multipart/form-data">
-  <label for="file">Choose a file to upload:</label>
-  <input type="file" id="file" name="file">
+<form id="upload-form" action="http://localhost:5000/upload" method="post" enctype="multipart/form-data">
+  <label for="file1">Choose file 1 to upload:</label>
+  <input type="file" id="file1" name="file1"><br>
+  <label for="file2">Choose file 2 to upload:</label>
+  <input type="file" id="file2" name="file2"><br>
+  <label for="file3">Choose file 3 to upload:</label>
+  <input type="file" id="file3" name="file3"><br>
+  <label for="file4">Choose file 4 to upload:</label>
+  <input type="file" id="file4" name="file4"><br>
   <input type="hidden" id="team-id" name="team-id">
   <input type="submit" value="Upload">
 </form>
@@ -23,6 +29,18 @@
   console.log('Team ID from URL:', teamId); // Log the team ID for debugging
   document.getElementById('team-id').value = teamId;
   console.log('Hidden input value:', document.getElementById('team-id').value); // Log the hidden input value for debugging
+
+  // Handle form submission
+  document.getElementById('upload-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const formData = new FormData(this);
+    fetch(this.action, {
+      method: this.method,
+      body: formData
+    }).then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.error('Error:', error));
+  });
 </script>
 </body>
 </html>
