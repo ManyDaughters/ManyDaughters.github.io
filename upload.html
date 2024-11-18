@@ -29,6 +29,9 @@
     .form-group {
       margin-bottom: 60px; /* Double the space between form groups */
     }
+    .extra-space {
+      margin-bottom: 60px; /* Add extra space after the text */
+    }
   </style>
 </head>
 <body class="container">
@@ -36,7 +39,7 @@
   <h1>#ManyDaughters</h1>
 
   <!-- Section for instructions -->
-  <div class="section">
+  <div class="section extra-space">
     <p>Please select and upload your analysis code here. Choose the do-files corresponding to your tests of hypotheses 1 to 4 accordingly.</p>
   </div>
   
@@ -68,8 +71,10 @@
             <input type="file" id="file4" name="file4" class="custom-file-input">
           </div>
         </div>
-        <input type="hidden" id="team-id" name="team-id"><br>
-        <input type="submit" value="Upload" class="btn btn-success"> <!-- Change button color to success (green) -->
+        <div class="text-center">
+          <input type="hidden" id="team-id" name="team-id"><br>
+          <input type="submit" value="Upload" class="btn btn-success d-block mx-auto"> <!-- Center the button -->
+        </div>
       </form>
     </div>
   </div>
