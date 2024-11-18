@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
-<body>
+<head>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container">
 <h1>#ManyDaughters</h1>
 <p>Soon you will be able to upload and check your analysis code here.</p>
 
@@ -8,12 +11,12 @@
   You have received your Research Team ID and password from the #ManyDaughters team.
 </p>
 
-<form onsubmit="return validateForm(event)">
-  <label for="team-id">Research Team ID:</label><br>
-  <input type="text" id="team-id" name="team-id"><br>
-  <label for="password">Password:</label><br>
-  <input type="password" id="password" name="password"><br>
-  <input type="submit" value="Login">
+<form onsubmit="return validateForm(event)" class="form-group">
+  <label for="team-id">Research Team ID:</label>
+  <input type="text" id="team-id" name="team-id" class="form-control"><br>
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" class="form-control"><br>
+  <input type="submit" value="Login" class="btn btn-primary">
 </form>
 
 <script>

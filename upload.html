@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <style>
     .custom-file-input {
       display: none;
@@ -15,12 +16,12 @@
     }
   </style>
 </head>
-<body>
+<body class="container">
 <h1>#ManyDaughters</h1>
 <p>Please select and upload your analysis code here. Choose the do-files corresponding to your tests of hypotheses 1 to 4 accordingly.</p>
 
 <!-- File upload form -->
-<form id="upload-form" action="http://localhost:5000/upload" method="post" enctype="multipart/form-data">
+<form id="upload-form" action="http://localhost:5000/upload" method="post" enctype="multipart/form-data" class="form-group">
   <label for="file1" class="custom-file-label">Select H1 do-file</label>
   <input type="file" id="file1" name="file1" class="custom-file-input"><br><br>
   <label for="file2" class="custom-file-label">Select H2 do-file</label>
@@ -30,7 +31,7 @@
   <label for="file4" class="custom-file-label">Select H4 do-file</label>
   <input type="file" id="file4" name="file4" class="custom-file-input"><br><br>
   <input type="hidden" id="team-id" name="team-id"><br>
-  <input type="submit" value="Upload">
+  <input type="submit" value="Upload" class="btn btn-primary">
 </form>
 
 <script>
