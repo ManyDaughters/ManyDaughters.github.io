@@ -125,22 +125,14 @@
     document.getElementById('upload-form').addEventListener('submit', function(event) {
       event.preventDefault();
       const formData = new FormData(this);
-      const timestamp = new Date().toISOString().replace(/[-:.]/g, '').slice(0, 15);
-      const files = [];
-      document.querySelectorAll('.custom-file-input').forEach(input => {
-        if (input.files[0]) {
-          const newFilename = `${timestamp}_${teamId}_${input.files[0].name}`;
-          files.push(newFilename);
-          formData.append(input.name, input.files[0], newFilename);
-        }
-      });
       fetch(this.action, {
         method: this.method,
         body: formData
       }).then(response => response.json())
         .then(data => {
           console.log(data);
-          const queryString = `team-id=${teamId}&files=${files.join(',')}`;
+          const uploadedFiles = data.uploaded_files;
+          const queryString = `team-id=${teamId}&files=${uploadedFiles.join(',')}`;
           window.location.href = `upload_confirmation.html?${queryString}`;
         })
         .catch(error => console.error('Error:', error));

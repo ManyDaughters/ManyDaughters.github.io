@@ -24,7 +24,7 @@
     files.forEach(file => {
       const li = document.createElement('li');
       const timestamp = file.split('_')[0];
-      const formattedTimestamp = `${timestamp.slice(0, 4)}-${timestamp.slice(4, 6)}-${timestamp.slice(6, 8)} ${timestamp.slice(8, 10)}:${timestamp.slice(10, 12)}:${timestamp.slice(12, 14)}`;
+      const formattedTimestamp = `${timestamp.slice(0, 4)}-${timestamp.slice(4, 6)}-${timestamp.slice(6, 8)} ${timestamp.slice(9, 11)}:${timestamp.slice(11, 13)}:${timestamp.slice(13, 15)}`;
       console.log(`Timestamp: ${timestamp}, Formatted Timestamp: ${formattedTimestamp}`);  // Log the sliced timestamp
       li.textContent = `${file} (Uploaded at: ${formattedTimestamp})`;
       fileList.appendChild(li);

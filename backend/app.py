@@ -32,6 +32,7 @@ def upload_file():
         return jsonify({'error': 'No team ID provided'}), 400
 
     responses = []
+    uploaded_files = []
     for i, file in enumerate(files, start=1):
         if file and file.filename:
             content = file.read()
@@ -42,6 +43,7 @@ def upload_file():
 
             # Create the new filename with timestamp and team ID
             new_filename = f'{timestamp}_{team_id}_{file.filename}'
+            uploaded_files.append(new_filename)
 
             # URL encode the file path and file name
             file_path = quote(f'{FILE_PATH}/{new_filename}')
@@ -86,7 +88,7 @@ def upload_file():
             responses.append({'error': f'No file selected for file{i}'})
 
     print('Responses:', responses)  # Log the responses
-    return jsonify(responses), 201 if all('message' in res for res in responses) else 400
+    return jsonify({'responses': responses, 'uploaded_files': uploaded_files}), 201 if all('message' in res for res in responses) else 400
 
 if __name__ == '__main__':
     app.run(debug=True)
