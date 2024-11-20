@@ -12,8 +12,8 @@ app = Flask(__name__)
 
 GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
 REPO_OWNER = 'ManyDaughters'
-REPO_NAME = 'ManyDaughters.github.io'
-FILE_PATH = 'files'  # Ensure this path is correct and does not contain invalid characters
+REPO_NAME = 'RT_uploads'
+FILE_PATH = 'do-files'  # Ensure this path is correct and does not contain invalid characters
 
 # Debug print to verify the GitHub token
 print(f'GITHUB_TOKEN: {GITHUB_TOKEN}')
