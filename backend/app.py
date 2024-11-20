@@ -32,7 +32,7 @@ def upload_file():
         return jsonify({'error': 'No team ID provided'}), 400
 
     responses = []
-    for file in files:
+    for i, file in enumerate(files, start=1):
         if file and file.filename:
             content = file.read()
             encoded_content = b64encode(content).decode('utf-8')
@@ -85,6 +85,7 @@ def upload_file():
         else:
             responses.append({'error': f'No file selected for file{i}'})
 
+    print('Responses:', responses)  # Log the responses
     return jsonify(responses), 201 if all('message' in res for res in responses) else 400
 
 if __name__ == '__main__':
