@@ -125,9 +125,16 @@
     document.getElementById('upload-form').addEventListener('submit', function(event) {
       event.preventDefault();
       const formData = new FormData(this);
-      fetch(this.action, {
-        method: this.method,
-        body: formData
+      fetch('https://api.github.com/repos/ManyDaughters/RT_uploads/do-files/' + formData.get('file1').name, {
+        method: 'PUT',
+        headers: {
+          'Authorization': 'token YOUR_GITHUB_TOKEN',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message: 'Upload file',
+          content: btoa(formData.get('file1').content)
+        })
       }).then(response => response.json())
         .then(data => {
           console.log(data);

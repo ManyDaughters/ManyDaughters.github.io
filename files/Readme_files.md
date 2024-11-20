@@ -1,1 +1,0 @@
-# This folder stores all uploaded analysis do-files
