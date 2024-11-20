@@ -8,7 +8,7 @@
     }
     .file-name {
       display: inline-block;
-      width: 40%;
+      width: 30%;
       padding: 6px 12px;
       border: 1px solid #ddd;
       border-radius: 4px;
@@ -47,6 +47,13 @@
     input[type="file"] {
       display: none;
     }
+    .file-label {
+      display: inline-block;
+      width: 30%;
+      padding: 6px 12px;
+      text-align: right;
+      margin-bottom: 10px;
+    }
   </style>
 </head>
 <body class="container">
@@ -64,6 +71,7 @@
       <form id="upload-form" action="http://localhost:5000/upload" method="post" enctype="multipart/form-data" class="form-group">
         <div class="row">
           <div class="col-12 form-group">
+            <label class="file-label"><strong>H1 do-file</strong></label>
             <span class="file-name" id="file1-name">No file chosen</span>
             <label for="file1" class="browse-button">Browse</label>
             <input type="file" id="file1" name="file1" class="custom-file-input">
@@ -71,6 +79,7 @@
         </div>
         <div class="row">
           <div class="col-12 form-group">
+            <label class="file-label"><strong>H2 do-file</strong></label>
             <span class="file-name" id="file2-name">No file chosen</span>
             <label for="file2" class="browse-button">Browse</label>
             <input type="file" id="file2" name="file2" class="custom-file-input">
@@ -78,6 +87,7 @@
         </div>
         <div class="row">
           <div class="col-12 form-group">
+            <label class="file-label"><strong>H3 do-file</strong></label>
             <span class="file-name" id="file3-name">No file chosen</span>
             <label for="file3" class="browse-button">Browse</label>
             <input type="file" id="file3" name="file3" class="custom-file-input">
@@ -85,6 +95,7 @@
         </div>
         <div class="row">
           <div class="col-12 form-group">
+            <label class="file-label"><strong>H4 do-file</strong></label>
             <span class="file-name" id="file4-name">No file chosen</span>
             <label for="file4" class="browse-button">Browse</label>
             <input type="file" id="file4" name="file4" class="custom-file-input">
