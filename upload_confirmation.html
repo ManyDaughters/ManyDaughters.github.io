@@ -23,10 +23,11 @@
     const fileList = document.getElementById('file-list');
     files.forEach(file => {
       const li = document.createElement('li');
-    const timestamp = file.slice(0, 15);
+      const timestamp = file.slice(0, 15);
       const formattedTimestamp = `${timestamp.slice(0, 4)}-${timestamp.slice(4, 6)}-${timestamp.slice(6, 8)} ${timestamp.slice(9, 11)}:${timestamp.slice(11, 13)}:${timestamp.slice(13, 15)}`;
+      const originalFilename = file.slice(24);
       console.log(`Timestamp: ${timestamp}, Formatted Timestamp: ${formattedTimestamp}`);  // Log the sliced timestamp
-      li.textContent = `${file} (Uploaded at: ${formattedTimestamp})`;
+      li.textContent = `${originalFilename} (Uploaded at: ${formattedTimestamp})`;
       fileList.appendChild(li);
     });
   </script>
