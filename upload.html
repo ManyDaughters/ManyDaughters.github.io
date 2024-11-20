@@ -106,12 +106,13 @@
         .catch(error => console.error('Error:', error));
     });
 
-    // Update label text when a file is selected
+    // Update label text and button text when a file is selected
     document.querySelectorAll('.custom-file-input').forEach(input => {
       input.addEventListener('change', function() {
         const label = this.nextElementSibling;
         const fileName = this.files[0] ? this.files[0].name : 'Select file';
         label.textContent = fileName;
+        document.querySelector('input[type="submit"]').value = `Upload ${fileName}`;
       });
     });
   </script>
