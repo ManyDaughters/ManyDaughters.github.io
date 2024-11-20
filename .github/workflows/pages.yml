@@ -17,7 +17,7 @@ on:
       - 'js/**'
       - '.github/workflows/pages.yml'
     paths-ignore:
-      - 'files/**'  # Exclude the uploads directory from triggering the workflow
+      - 'files/**'  # Exclude the files directory from triggering the workflow
 
 jobs:
   build:
