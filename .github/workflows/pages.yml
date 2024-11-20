@@ -4,20 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'index.html'
-      - 'upload.html'
-      - 'upload_confirmation.html'
-      - '_config.yml'
-      - '_includes/**'
-      - '_layouts/**'
-      - '_posts/**'
-      - 'assets/**'
-      - 'css/**'
-      - 'js/**'
-      - '.github/workflows/pages.yml'
-    paths-ignore:
-      - 'files/**'  # Exclude the files directory from triggering the workflow
 
 jobs:
   build:
@@ -30,24 +16,33 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3  # Update to the latest version
 
-    # Add a delay to prevent multiple builds from being triggered simultaneously
-    - name: Delay
-      run: sleep 5
+    - name: Check for changes outside the files directory
+      id: check_changes
+      run: |
+        if git diff --name-only HEAD^ HEAD | grep -qv '^files/'; then
+          echo "true" > continue_build
+        else
+          echo "false" > continue_build
+        fi
 
     - name: Set up Ruby
+      if: steps.check_changes.outputs.continue_build == 'true'
       uses: ruby/setup-ruby@v1  # Update to the latest version
       with:
         ruby-version: '3.0'  # Specify a valid Ruby version
 
     - name: Install dependencies
+      if: steps.check_changes.outputs.continue_build == 'true'
       run: |
         gem install bundler
         bundle install
 
     - name: Build site
+      if: steps.check_changes.outputs.continue_build == 'true'
       run: bundle exec jekyll build
 
     - name: Deploy to GitHub Pages
+      if: steps.check_changes.outputs.continue_build == 'true'
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.ACTIONS_DEPLOY_KEY }}  # Ensure the secret name matches
@@ -56,6 +51,7 @@ jobs:
         publish_branch: gh-pages
 
     - name: Debug GitHub Actions Environment
+      if: steps.check_changes.outputs.continue_build == 'true'
       run: |
         echo "GITHUB_REPOSITORY: ${{ github.repository }}"
         echo "GITHUB_REF: ${{ github.ref }}"
