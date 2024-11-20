@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .title-space {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body class="container">
+
+  <h1 class="title-space">#ManyDaughters</h1>
+  <p id="confirmation-message"></p>
+  <ul id="file-list"></ul>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const teamId = urlParams.get('team-id');
+    const files = urlParams.get('files').split(',');
+
+    document.getElementById('confirmation-message').textContent = `Thank you RT ${teamId}. Your upload was successful. We received the following files:`;
+    const fileList = document.getElementById('file-list');
+    files.forEach(file => {
+      const li = document.createElement('li');
+      li.textContent = file;
+      fileList.appendChild(li);
+    });
+  </script>
+
+</body>
+</html>

@@ -129,7 +129,17 @@
         method: this.method,
         body: formData
       }).then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => {
+          console.log(data);
+          const files = [];
+          document.querySelectorAll('.custom-file-input').forEach(input => {
+            if (input.files[0]) {
+              files.push(input.files[0].name);
+            }
+          });
+          const queryString = `team-id=${teamId}&files=${files.join(',')}`;
+          window.location.href = `upload_confirmation.html?${queryString}`;
+        })
         .catch(error => console.error('Error:', error));
     });
 
