@@ -16,10 +16,15 @@ on:
       - 'css/**'
       - 'js/**'
       - '.github/workflows/pages.yml'
+    paths-ignore:
+      - 'files/**'  # Exclude the uploads directory from triggering the workflow
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    concurrency:
+      group: pages-build-${{ github.ref }}
+      cancel-in-progress: true
 
     steps:
     - name: Checkout repository
