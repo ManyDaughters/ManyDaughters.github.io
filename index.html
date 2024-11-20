@@ -2,6 +2,11 @@
 <html>
 <head>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .narrow-input {
+      max-width: 300px;
+    }
+  </style>
 </head>
 <body class="container">
 <h1>#ManyDaughters</h1>
@@ -13,9 +18,9 @@
 
 <form onsubmit="return validateForm(event)" class="form-group">
   <label for="team-id">Research Team ID:</label>
-  <input type="text" id="team-id" name="team-id" class="form-control"><br>
+  <input type="text" id="team-id" name="team-id" class="form-control narrow-input"><br>
   <label for="password">Password:</label>
-  <input type="password" id="password" name="password" class="form-control"><br>
+  <input type="password" id="password" name="password" class="form-control narrow-input"><br>
   <input type="submit" value="Login" class="btn btn-primary">
 </form>
 
