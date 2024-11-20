@@ -5,10 +5,12 @@ from base64 import b64encode
 from dotenv import load_dotenv
 from urllib.parse import quote
 from datetime import datetime  # Add import for datetime
+from flask_cors import CORS  # Add this import
 
 load_dotenv()
 
 app = Flask(__name__)
+CORS(app, origins=["https://manydaughters.github.io"])  # Enable CORS for the specified origin
 
 GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
 REPO_OWNER = 'ManyDaughters'
