@@ -7,14 +7,33 @@
       display: none;
     }
     .custom-file-label {
-      display: block;
-      width: 100%;
+      display: inline-block;
+      width: 30%;
       padding: 6px 12px;
-      cursor: pointer;
       background-color: #007bff;
       color: white;
       border-radius: 4px;
       text-align: center;
+      margin-bottom: 10px;
+    }
+    .file-name {
+      display: inline-block;
+      width: 40%;
+      padding: 6px 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .browse-button {
+      display: inline-block;
+      width: 20%;
+      padding: 6px 12px;
+      background-color: #28a745;
+      color: white;
+      border-radius: 4px;
+      text-align: center;
+      cursor: pointer;
       margin-bottom: 10px;
     }
     .section {
@@ -52,25 +71,33 @@
       <form id="upload-form" action="http://localhost:5000/upload" method="post" enctype="multipart/form-data" class="form-group">
         <div class="row">
           <div class="col-12 form-group">
-            <label for="file1" class="custom-file-label">Select H1 do-file</label>
+            <label class="custom-file-label">Select H1 do-file</label>
+            <span class="file-name" id="file1-name">No file chosen</span>
+            <label for="file1" class="browse-button">Browse</label>
             <input type="file" id="file1" name="file1" class="custom-file-input">
           </div>
         </div>
         <div class="row">
           <div class="col-12 form-group">
-            <label for="file2" class="custom-file-label">Select H2 do-file</label>
+            <label class="custom-file-label">Select H2 do-file</label>
+            <span class="file-name" id="file2-name">No file chosen</span>
+            <label for="file2" class="browse-button">Browse</label>
             <input type="file" id="file2" name="file2" class="custom-file-input">
           </div>
         </div>
         <div class="row">
           <div class="col-12 form-group">
-            <label for="file3" class="custom-file-label">Select H3 do-file</label>
+            <label class="custom-file-label">Select H3 do-file</label>
+            <span class="file-name" id="file3-name">No file chosen</span>
+            <label for="file3" class="browse-button">Browse</label>
             <input type="file" id="file3" name="file3" class="custom-file-input">
           </div>
         </div>
         <div class="row">
           <div class="col-12 form-group">
-            <label for="file4" class="custom-file-label">Select H4 do-file</label>
+            <label class="custom-file-label">Select H4 do-file</label>
+            <span class="file-name" id="file4-name">No file chosen</span>
+            <label for="file4" class="browse-button">Browse</label>
             <input type="file" id="file4" name="file4" class="custom-file-input">
           </div>
         </div>
@@ -106,12 +133,12 @@
         .catch(error => console.error('Error:', error));
     });
 
-    // Update label text when a file is selected
+    // Update file name text when a file is selected
     document.querySelectorAll('.custom-file-input').forEach(input => {
       input.addEventListener('change', function() {
-        const label = this.nextElementSibling;
-        const fileName = this.files[0] ? this.files[0].name : 'Select file';
-        label.textContent = fileName;
+        const fileNameSpan = document.getElementById(`${this.id}-name`);
+        const fileName = this.files[0] ? this.files[0].name : 'No file chosen';
+        fileNameSpan.textContent = fileName;
       });
     });
   </script>
