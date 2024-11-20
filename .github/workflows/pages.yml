@@ -16,15 +16,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3  # Update to the latest version
 
-    - name: Check for changes outside the files directory
-      id: check_changes
-      run: |
-        if git diff --name-only HEAD^ HEAD | grep -qv '^files/'; then
-          echo "true" > continue_build
-        else
-          echo "false" > continue_build
-        fi
-
     - name: Set up Ruby
       if: steps.check_changes.outputs.continue_build == 'true'
       uses: ruby/setup-ruby@v1  # Update to the latest version
