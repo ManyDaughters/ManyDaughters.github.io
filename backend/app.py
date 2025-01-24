@@ -90,5 +90,9 @@ def upload_file():
     print('Responses:', responses)  # Log the responses
     return jsonify({'responses': responses, 'uploaded_files': uploaded_files}), 201 if all('message' in res for res in responses) else 400
 
+@app.route('/')
+def index():
+    return "Server is running"
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
